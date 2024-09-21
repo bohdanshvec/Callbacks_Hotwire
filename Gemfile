@@ -26,6 +26,8 @@ gem "stimulus-rails"
 gem "bootstrap"
 gem "sassc-rails"
 
+gem 'devise'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
