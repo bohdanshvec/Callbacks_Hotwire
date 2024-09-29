@@ -7,9 +7,17 @@ export default class extends Controller {
     user: Number
   }
 
+  connect() {
+    console.log('Messages Controller JS')
+  }
+
   messageTargetConnected(element) {
     const actions = element.querySelector('.js-actions')
     const user = parseInt(element.dataset.user, 10)
+
+    console.log('Bady_User: ' + parseInt(document.body.dataset.userId, 10))
+    console.log('Value_user:' + this.userValue)
+    console.log('Data_user:' + user)
 
     if(!actions || !user) return
 
@@ -19,4 +27,5 @@ export default class extends Controller {
       actions.remove()
     }
   }
+
 }

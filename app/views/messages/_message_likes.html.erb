@@ -1,0 +1,13 @@
+<%#= turbo_stream_from "likes" %>
+<% message ||= @message %>
+
+<%= turbo_frame_tag "message_#{message.id}_likes", data: { 'likes-target': 'widget', 'initiator': local_assigns[:initiator], 'count': local_assigns[:count] } do %>
+
+  likes: <b><%= message.likes.count %></b>
+
+  <div class='js-action'>
+    <%= link_to 'Like', message_likes_path(message), class: 'btn btn-success btn-sm d-none', data: { turbo_method: :post, 'likes-target': 'doLike' } %>
+
+    <%= link_to 'UnLike', message_likes_path(message), class: 'btn btn-danger btn-sm d-none', data: { turbo_method: :delete, 'likes-target': 'doUnlike' } %>
+  </div>
+<% end %>

@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body data-controller="application" data-user-id="<%= current_user&.id%>">
     <div>
       <%= render 'shared/flash' %>
     </div>

@@ -1,0 +1,5 @@
+<% message ||= @message %>
+<% initiator ||= @initiator %>
+<% count ||= @count %>
+
+<%= turbo_stream.replace "message_#{message.id}_likes", partial: 'messages/message_likes', locals: { message: message, initiator: initiator, count: count } %>

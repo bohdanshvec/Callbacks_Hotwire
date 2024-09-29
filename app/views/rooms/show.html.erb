@@ -7,12 +7,17 @@
 
   <%= render 'messages/form', message: @message %>
 
-  <%= turbo_frame_tag 'messages', data: { controller: 'messages', 'messages-user-value': current_user.id } do %>
-    <%#= render partial: 'messages/message_frame', collection: @room.messages, as: :message %>
-    <% @room.messages.includes(:user).each do |msg| %>
-      <article>
-        <%= render msg %>
-      </article>
+  <% if current_user&.member_of?(@room) %>
+    <%= turbo_frame_tag 'messages', data: {controller: 'messages', 'messages-user-value': current_user.id} do %>
+      <% @room.messages.order(id: :desc).includes(:user).each do |message| %>
+        <article>
+ 
+          <%= turbo_frame_tag message, data: { controller: 'messages', 'messages-user-value': current_user.id, 'messages-target': 'message', 'user': message.user.id } do %>
+            <%= render message %>
+          <% end %>
+
+        </article>
+      <% end %>
     <% end %>
   <% end %>
 </div>

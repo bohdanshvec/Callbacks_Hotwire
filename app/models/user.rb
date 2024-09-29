@@ -17,4 +17,8 @@ class User < ApplicationRecord
   def name
     email.split('@').first
   end
+
+  def liked?(message)
+    likes.find_by(message: message).present?
+  end
 end
