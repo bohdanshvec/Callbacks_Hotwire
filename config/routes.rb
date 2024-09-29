@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[index, show]
 
   resources :messages, only: %i[create show update] do
+    member do
+      get 'message_liked'
+    end
     resource :likes, only: %i[create destroy]
   end
 

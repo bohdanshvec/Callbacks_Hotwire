@@ -27,6 +27,12 @@ class MessagesController < ApplicationController
     @message.touch
   end
 
+  def message_liked
+    @message = Message.find_by(id: params[:id])
+    @liked = current_user.liked?(@message)
+    render json: { liked: @liked }
+  end
+
   private
 
   def message_params

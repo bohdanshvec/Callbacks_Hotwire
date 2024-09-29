@@ -12,9 +12,9 @@
     </div>
   <% end %>
   
-  <%#= tag.section data: { controller: 'likes',  'likes-liked-value': current_user.liked?(message) } do %>
+  <%= tag.section data: { controller: 'likes' } do %>
     <%= render 'messages/message_likes', message: message %>
-  <%# end %>
+  <% end %>
 
   <hr>
 <% end %>
