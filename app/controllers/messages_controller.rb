@@ -4,10 +4,10 @@ class MessagesController < ApplicationController
     @message = current_user.messages.build(message_params)
 
     if @message.save
-      respond_to do |format|
-        format.html { redirect_to products_path, notice: "Message was successfully created." }
-        format.turbo_stream { flash.now[:notice] = "Message was successfully created." }
-      end
+      # respond_to do |format|
+      #   format.html { redirect_to products_path, notice: "Message was successfully created." }
+      #   format.turbo_stream { flash.now[:notice] = "Message was successfully created." }
+      # end
     else
       @room = @message.room
       render 'rooms/show'
