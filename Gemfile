@@ -35,6 +35,7 @@ gem "jbuilder"
 gem "redis", "~> 5"
 
 gem 'sidekiq', '~> 7.3', '>= 7.3.2'
+gem 'after_commit_everywhere', '~> 1.4'
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
