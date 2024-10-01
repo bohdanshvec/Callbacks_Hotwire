@@ -27,6 +27,14 @@ class MessagesController < ApplicationController
     @message.touch
   end
 
+  def destroy
+    @message = Message.find_by(id: params[:id])
+    @message.destroy
+    respond_to do |format|
+      format.turbo_stream { Turbo::StreamsChannel.broadcast_remove_to("room_#{@message.room.id}")}
+    end
+  end
+
   def message_like
     message = Message.find(params[:id])
     liked = current_user.liked?(message) # или другая логика

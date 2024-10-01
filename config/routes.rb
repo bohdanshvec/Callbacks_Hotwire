@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :rooms, only: %i[index, show]
 
-  resources :messages, only: %i[create show update] do    
+  resources :messages, only: %i[create show update destroy] do    
     member do
       get 'message_like'
     end

@@ -9,6 +9,7 @@
     <br>
     <div class='js-actions d-none'>
       <%= link_to 'Edit', message_path(message), class: 'btn btn-secondary', data: { turbo_method: :patch } %>
+      <%= link_to 'Delete', message_path(message), class: 'ms-1 btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
     </div>
   <% end %>
   
