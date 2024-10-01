@@ -1,4 +1,4 @@
-<% message ||= @message %>
+<%# message ||= @message %>
 <%= turbo_frame_tag message do %>
   <%= tag.section data: {user: message.user.id,
     'messages-target': 'message'} do %>
@@ -14,7 +14,7 @@
   <% end %>
   
   <%= tag.section data: { controller: 'likes' } do %>
-    <%= render 'messages/message_likes', message: message %>
+    <%= render 'messages/message_likes', message: message, liked: (defined?(liked) && (liked == true || liked == false) ? liked : 'zero')  %>
   <% end %>
 
   <hr>

@@ -2,7 +2,8 @@ class MessagesController < ApplicationController
   
   def create
     @message = current_user.messages.build(message_params)
-
+    @liked = false
+    
     if @message.save
       # respond_to do |format|
       #   format.html { redirect_to products_path, notice: "Message was successfully created." }
@@ -25,13 +26,16 @@ class MessagesController < ApplicationController
   def update
     @message = Message.find_by(id: params[:id])
     @message.touch
+    @liked = current_user.liked?(@message)
   end
 
   def destroy
     @message = Message.find_by(id: params[:id])
-    @message.destroy
     respond_to do |format|
-      format.turbo_stream { Turbo::StreamsChannel.broadcast_remove_to("room_#{@message.room.id}")}
+      format.turbo_stream do
+        @message.broadcast_remove_to("room_#{@message.room.id}") # Отправляем удаление перед фактическим уничтожением
+        @message.destroy
+      end
     end
   end
 

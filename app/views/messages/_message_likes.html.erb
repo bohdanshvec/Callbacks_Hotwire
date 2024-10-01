@@ -1,7 +1,7 @@
 <%#= turbo_stream_from "likes" %>
 <%# message ||= @message %>
 
-<%= turbo_frame_tag "message_#{message.id}_likes", data: { 'likes-target': 'widget', 'initiator': local_assigns[:initiator], 'message-id': message.id } do %>
+<%= turbo_frame_tag "message_#{message.id}_likes", data: { 'likes-target': 'widget', 'initiator': local_assigns[:initiator], 'count': local_assigns[:count], 'message-id': message.id, 'liked': (local_assigns[:liked] == true || local_assigns[:liked] == false ? local_assigns[:liked] : 'zero') } do %>
 
   likes: <b><%= message.likes.count %></b>
 

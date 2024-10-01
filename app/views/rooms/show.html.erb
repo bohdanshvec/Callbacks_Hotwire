@@ -12,7 +12,7 @@
       <% @room.messages.order(id: :desc).includes(:user).each do |message| %>
         <article>
  
-          <%= render message %>
+          <%= render "messages/message", message: message, liked: current_user.liked?(message) %>
 
         </article>
       <% end %>
