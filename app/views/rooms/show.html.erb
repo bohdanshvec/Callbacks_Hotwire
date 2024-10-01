@@ -12,9 +12,7 @@
       <% @room.messages.order(id: :desc).includes(:user).each do |message| %>
         <article>
  
-          <%= turbo_frame_tag message, data: { controller: 'messages', 'messages-user-value': current_user.id, 'messages-target': 'message', 'user': message.user.id } do %>
-            <%= render message %>
-          <% end %>
+          <%= render message %>
 
         </article>
       <% end %>
